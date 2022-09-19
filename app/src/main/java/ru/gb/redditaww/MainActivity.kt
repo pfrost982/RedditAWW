@@ -3,6 +3,8 @@ package ru.gb.redditaww
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import ru.gb.redditaww.databinding.ActivityMainBinding
 import ru.gb.redditaww.network.RedditClient
 import ru.gb.redditaww.network.RedditService
@@ -24,5 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.setRepository(RepositoryImpl(apiService))
 
+        val adapter = PostsAdapter()
+        binding.recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.getMovieList().observe(this@MainActivity) {
+                it?.let {
+                    adapter.submitData(lifecycle, it)
+                }
+            }
+        }
     }
 }
