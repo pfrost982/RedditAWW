@@ -1,13 +1,12 @@
 package ru.gb.redditaww
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import ru.gb.redditaww.databinding.ActivityMainBinding
 import ru.gb.redditaww.network.RedditClient
 import ru.gb.redditaww.network.RedditService
+import ru.gb.redditaww.repository.RepositoryImpl
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val apiService = RedditClient.getClient()
             .create(RedditService::class.java)
 
-        //viewModel.setRepository(Repository_Impl(apiService))
+        viewModel.setRepository(RepositoryImpl(apiService))
+
     }
 }

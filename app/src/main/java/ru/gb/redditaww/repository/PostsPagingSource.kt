@@ -8,6 +8,8 @@ import ru.gb.redditaww.network.json.Post
 class PostsPagingSource(private val apiService: RedditService) :
     PagingSource<RedditApiKey, Post>() {
 
+    override val keyReuseSupported: Boolean = true
+
     override suspend fun load(params: LoadParams<RedditApiKey>): LoadResult<RedditApiKey, Post> {
 
         return try {
