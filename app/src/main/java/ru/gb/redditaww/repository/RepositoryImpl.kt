@@ -18,7 +18,7 @@ class RepositoryImpl(private val apiService: RedditService) : Repository {
             ),
             pagingSourceFactory = {
                 PostsPagingSource(apiService)
-            }, initialKey = RedditApiKey(after = null, before = null)
+            }, initialKey = PagingSourceKey(after = null, before = null)
         ).liveData
     }
 

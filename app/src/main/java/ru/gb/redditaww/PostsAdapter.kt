@@ -28,7 +28,7 @@ class PostsAdapter :
             binding.title.text = post.title
             Glide.with(this.itemView.context)
                 .load(post.imageURL)
-                .placeholder(R.drawable.ic_no_image)
+                .placeholder(R.drawable.no_image)
                 .into(binding.image)
         }
     }

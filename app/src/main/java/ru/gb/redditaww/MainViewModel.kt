@@ -15,7 +15,7 @@ class MainViewModel : ViewModel() {
         this.repository = repository
     }
 
-    fun getMovieList(): LiveData<PagingData<Post>> {
+    fun getPosts(): LiveData<PagingData<Post>> {
         return repository.getPosts().cachedIn(viewModelScope)
     }
 }
